@@ -1,1 +1,3 @@
-# action-1
+# exploring Action
+- Enhancing productivity and code quality
+- Automate development workflow
