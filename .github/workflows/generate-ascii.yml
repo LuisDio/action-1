@@ -4,16 +4,34 @@ on:
   push
 
 jobs:
-    ascii_job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout repo
-          uses: actions/checkout@v4
+    build_job1:
+      runs-on: ubuntu-latest
+      steps:
 
-        - name: List repo file
-          run: ls -ltra
+      - name: Install Cowsay program
+        run: sudo apt-get install cowsay -y
 
-        - name: Executing shell script
-          run: |
-            chmod +x ascii-script.sh
-            ./ascii-script.sh
+      - name: Executing cowsay CMD
+        run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWRR " >> dragon.txt
+
+      - name: Sleep for 30s
+        run: sleep 30
+
+    test_job2:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Sleep for 10s
+        run: sleep 10
+
+      - name: Test file exist
+        run: grep -i "dragon" dragon.txt
+
+
+    deploy_job3:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Read file
+        run: cat dragon.txt
+
+      - name: List repo file
+        run: ls -ltra
